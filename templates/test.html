@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>知识竞赛</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+        .main {
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            overflow: hidden;
+        }
+        .option {
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="main">
+    <form action="/" method="post">
+    <ul class="question">
+        {% if data[1] == "单" %}
+            <h2>单选题</h2>
+            {% elif data[1] == "多" %}
+                <h2>多选题</h2>
+        {% endif %}
+{# ['索引', '题型', '题目', '选项A', '选项B', '选项C', '选项D', '选项E', '选项F', '答案'] #}
+
+
+        <h4>{{ data[2] }}</h4>
+
+
+        {% if data[7] == None and data[8] == None and data[1] == "单" %}
+            <li class="option">
+                <label><input type="radio" name="{{ data[0] }}" value="A">{{ temp[3] }}</label>
+            </li>
+            <li class="option">
+                <label><input type="radio" name="{{ data[0] }}" value="B">{{ temp[4] }}</label>
+            </li>
+            <li class="option">
+                <label><input type="radio" name="{{ data[0] }}" value="B">{{ temp[5] }}</label>
+            </li>
+            <li class="option">
+                <label><input type="radio" name="{{ data[0] }}" value="B">{{ temp[6] }}</label>
+            </li>
+        {% endif %}
+
+        {% if data[7] != None and data[8] != None and data[1] == "多" %}
+            <li class="option">
+                <label><input type="checkbox" name="{{ data[0] }}" value="A">{{ temp[3] }}</label>
+            </li>
+            <li class="option">
+                <label><input type="checkbox" name="{{ data[0] }}" value="B">{{ temp[4] }}</label>
+            </li>
+            <li class="option">
+                <label><input type="checkbox" name="{{ data[0] }}" value="B">{{ temp[5] }}</label>
+            </li>
+            <li class="option">
+                <label><input type="checkbox" name="{{ data[0] }}" value="B">{{ temp[6] }}</label>
+            </li>
+            <li class="option">
+                <label><input type="checkbox" name="{{ data[0] }}" value="B">{{ temp[7] }}</label>
+            </li>
+            <li class="option">
+                <label><input type="checkbox" name="{{ data[0] }}" value="B">{{ temp[8] }}</label>
+            </li>
+        {% endif %}
+
+        <div>
+            <button>上一题</button>
+            <button>下一题</button>
+            <button>提交</button>
+        </div>
+    </ul>
+    </form>
+</div>
+{#<script>#}
+{#    var answer = new Array();#}
+{##}
+    {#for(var i=1; i<=300; i++){#}
+    {#    answer[i] = new Array(i);#}
+    {#    for(var j = 1; j<=5; j++){#}
+    {#        answer[i][j]=i;#}
+    {#    }#}
+    {#}#}
+{##}
+{#    function saveA()#}
+{#    {#}
+{#        var radios = document.getElementsByName("单");#}
+        {#var index = {{ data[0] }}#}
+{#        if (index == )#}
+{#    }#}
+{##}
+{#    function saveWork() {#}
+{#	if (saveLock) {#}
+{#		return;#}
+{#	}#}
+{#	saveLock = true;#}
+{##}
+{#	$.toast({#}
+{#		type : 'loading',#}
+{#		time : 0,#}
+{#		content : "正在保存..."#}
+{#	});#}
+{##}
+{#	$("#questionIds").val("400085415,400085416,");#}
+{#	$("#pyFlag").val("1");#}
+{##}
+{#			setAllClozeAnswer();#}
+{#	setReadComprehensionAnswer();#}
+{#	setProceduralAnswer();#}
+{##}
+{#	if ($(".oralTestQue").length > 0) {#}
+{#		setOralTestAnswer();#}
+{#		var checkOralTest = setInterval(function () {#}
+{#			if(	$(".oralTestQue").length == oralTestEndNum) {#}
+{#				clearInterval(checkOralTest)#}
+{#				saveAnswer()#}
+{#			}#}
+{#		}, 1000);#}
+{#	} else {#}
+{#		saveAnswer()#}
+{#	}#}
+{#}#}
+{#</script>#}
+</body>
+</html>
