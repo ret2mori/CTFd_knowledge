@@ -1,25 +1,26 @@
-<!doctype html>
-<html>
-<head>
-    <title>Python Example</title>
-    <script>
-        function buttonTrigger(value) {
-            var output = document.getElementById('output');
-            output.innerText = 'Button clicked, waiting for response...';
-
-            fetch('command?value=' + value)
-                .then(function(response) {
-                    return response.text();
-                })
-                .then(function(text) {
-                    console.log(text);
-                    output.innerText = text;
-                });
-        }
-    </script>
-</head>
-<body>
-    <button value="Button A - OFF" onClick='buttonTrigger(this.value)'>Button A</button>
-    <div id="output"></div>
-</body>
-</html>
+		checkID=[1,2,3,4]
+        $.ajax({
+            url:'',
+            dataType:'json',
+            type:'POST',
+            async: true,
+            data: JSON.stringify(checkID),
+            processData : false, 
+            contentType : "application/json",
+            headers:{
+                id:token,
+            },
+            success: function(data){
+                if(data['status']==200){
+                    var r=confirm(data['msg']);
+                        if (r==true){
+                            location.reload();
+                        }
+                        else{
+                            location.reload();
+                        }
+                }else{
+                    alert(data['msg'])
+                }
+            }
+        })

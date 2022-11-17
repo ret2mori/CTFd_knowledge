@@ -1,12 +1,31 @@
-from bottle import request, route, run, static_file
+# -*- coding: utf-8 -*-
+from flask import Flask, jsonify, render_template
+import json
 
-@route('/')
-def index():
-    return static_file('index.html', './')
+app = Flask(__name__)  # 实例化app对象
 
-@route('/command')
-def command():
-    value = request.query.value
-    return 'Value was set to: ' + value
+testInfo = {}
 
-run(port=8000, debug=True)
+
+@app.route('/test_post/nn', methods=['GET', 'POST'])  # 路由
+def test_post():
+    testInfo['name'] = 'xiaoming'
+    testInfo['age'] = '28'
+    return json.dumps(testInfo)
+
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+
+@app.route('/indexx')
+def indexx():
+    return render_template('indexx.html')
+
+
+if __name__ == '__main__':
+    app.run(  # 任何ip都可以访问
+        port=7777,  # 端口
+        debug=True
+    )

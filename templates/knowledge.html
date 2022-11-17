@@ -82,7 +82,7 @@
             <button type="button" class="btn btn-primary" id="prev">上一题</button>
         </a>
         <a href = "{{ url_for('knowledge', num = n + 1) }}">
-            <button type="button" class="btn btn-primary" id="next" onclick="buttonTrigger()">下一题</button>
+            <button type="button" class="btn2" id="next" onclick="buttonTrigger()">下一题</button>
         </a>
 
         <button>提交</button>
@@ -91,10 +91,29 @@
     </form>
 </div>
 
+<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+
 <script>
 
-    var radio = new Array();
+    const radio = new Array();
 
+    $(".btn2").click(function ()
+    {
+        radio.push($('input:radio:checked').val());
+
+        $.ajax({
+           url: "test_post",
+           type: "POST",
+            data: JSON.stringify(radio),
+            contentType: "application/json",
+            headers:{
+               id:token,
+            },
+            success: function (data) {
+                console.log(data)
+            }
+        });
+    });
 
 
 {#$("input[name='{{ data[0] }}']").click(function () {#}

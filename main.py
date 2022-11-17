@@ -60,5 +60,12 @@ def command():
     print('Value was set to: ' + value)
     return 'Value was set to: ' + value
 
+
+@app.route('/test_post', methods=['POST'])
+def test_post():
+    if request.method == 'POST':
+        fileList = request.json
+        print("+++++++++"+fileList)
+
 if __name__ == '__main__':
     app.run(debug=True, port=8005)
