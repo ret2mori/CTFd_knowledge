@@ -1,6 +1,7 @@
 '''
 
 '''
+import json
 import random
 from flask import Flask, render_template, request
 import pandas as pd
@@ -33,6 +34,7 @@ print(topic_index)
 print(topic_index_answer)
 
 
+
 def get_topic(topic_index_temp_):
     data = []
     for i in topic_index_temp_:
@@ -54,12 +56,13 @@ def knowledge(num):
     return render_template('knowledge.html', data=_data[num], n=_n)
 
 
-
 @app.route('/knowledge/test_post', methods=['POST'])
 def test_post():
     if request.method == 'POST':
-        filelist = request.json
-        print("+++++++++" + str(filelist))
+        op_dict = request.json
+        print(type(op_dict))
+        print("+++++++++" + str(op_dict))
+
 
 
 if __name__ == '__main__':
