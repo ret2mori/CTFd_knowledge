@@ -85,7 +85,7 @@
             <button type="button" class="btn2" id="next" onclick="buttonTrigger()">下一题</button>
         </a>
 
-        <button>提交</button>
+        <button type="button" class="btn3" >提交</button>
 
     </ul>
     </form>
@@ -97,18 +97,16 @@
 
     const radio = new Array();
 
-    $(".btn2").click(function ()
+    $(".btn3").click(function ()
     {
-        radio.push($('input:radio:checked').val());
+        var op = $('input:radio:checked').val();
+        radio.push(op);
 
         $.ajax({
            url: "test_post",
            type: "POST",
             data: JSON.stringify(radio),
             contentType: "application/json",
-            headers:{
-               id:token,
-            },
             success: function (data) {
                 console.log(data)
             }

@@ -45,27 +45,22 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/knowledge/<int:num>/', methods=['GET'])
+@app.route('/knowledge/<int:num>', methods=['GET'])
 def knowledge(num):
     _data = get_topic(topic_index_temp)
-    _n=num
+    _n = num
     print(_data)
     print(_n)
     return render_template('knowledge.html', data=_data[num], n=_n)
 
 
-@app.route('/command')
-def command():
-    value = request.query.value
-    print('Value was set to: ' + value)
-    return 'Value was set to: ' + value
 
-
-@app.route('/test_post', methods=['POST'])
+@app.route('/knowledge/test_post', methods=['POST'])
 def test_post():
     if request.method == 'POST':
         fileList = request.json
-        print("+++++++++"+fileList)
+        print("+++++++++" + str(fileList))
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=8005)
