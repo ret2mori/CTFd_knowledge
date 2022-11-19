@@ -95,12 +95,12 @@
 
 <script>
 
-    const radio = new Array();
+    const radio = new Object();
 
     $(".btn3").click(function ()
     {
-        var op = $('input:radio:checked').val();
-        radio.push(op);
+        radio.{{ data[0] }} = $('input:radio:checked').val();
+        {#radio.push(op);#}
 
         $.ajax({
            url: "test_post",

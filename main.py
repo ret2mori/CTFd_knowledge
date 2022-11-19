@@ -58,8 +58,8 @@ def knowledge(num):
 @app.route('/knowledge/test_post', methods=['POST'])
 def test_post():
     if request.method == 'POST':
-        fileList = request.json
-        print("+++++++++" + str(fileList))
+        filelist = request.json
+        print("+++++++++" + str(filelist))
 
 
 if __name__ == '__main__':
