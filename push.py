@@ -8,7 +8,7 @@ print(user.id)
 '''
 # noinspection PyUnresolvedReferences
 from CTFd.utils.user import get_current_user
-from CTFd.models import db
+from models import db, Option
 '''
 @app.route('/knowledge/test_post', methods=['POST'])
 def test_post():
@@ -18,5 +18,9 @@ def test_post():
         print("+++++++++" + str(op_dict))
 
 '''
-def push():
-    db.
+
+
+def push(json):
+    user = get_current_user()
+
+    test = Option.query.add_columns()

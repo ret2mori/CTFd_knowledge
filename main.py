@@ -3,10 +3,13 @@
 '''
 import json
 import random
+
+from migrations import migrations, create_database, stamp_latest_revision
 from flask import Flask, render_template, request
 import pandas as pd
 
 # from bottle import request, route, run, static_file
+
 
 app = Flask(__name__)
 
@@ -32,7 +35,6 @@ for i in range(len(topic_index_temp)):
 print(topic_index_temp)
 print(topic_index)
 print(topic_index_answer)
-
 
 
 def get_topic(topic_index_temp_):
@@ -64,6 +66,29 @@ def test_post():
         print("+++++++++" + str(op_dict))
 
 
-
 if __name__ == '__main__':
+    from models import (
+        db,
+        Option,
+    )
+
+    url = create_database()
+    app.config["SQLALCHEMY_DATABASE_URI"] = str(url)
+
+    db.init_app(app)
+    migrations.init_app(app, db)
+    if url.drivername.startswith("sqlite"):
+        db.create_all()
+        stamp_latest_revision()
+    else:
+        # This creates tables instead of db.create_all()
+        # Allows migrations to happen properly
+        print("upgrade()")
+
+    from models import ma
+
+    ma.init_app(app)
+
+    app.db = db
+
     app.run(debug=True, port=8005)
